@@ -159,7 +159,7 @@ onBeforeUnmount(() => {
       v-show="menuOpen"
       id="mobile-menu"
       ref="sheet"
-      class="fixed inset-x-0 top-(--header-h) z-(--z-menu) bg-paper shadow-card lg:hidden"
+      class="fixed inset-x-0 top-(--header-h) z-(--z-menu) border-b border-line bg-paper/95 shadow-card backdrop-blur-md lg:hidden"
     >
       <nav aria-label="Hauptnavigation mobil" class="container-page pb-5">
         <ul class="border-t border-line">

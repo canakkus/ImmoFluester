@@ -48,7 +48,7 @@ function restoreFocus(): void {
           <button
             ref="tiles"
             type="button"
-            class="relative block aspect-square w-full cursor-zoom-in rounded-xs bg-paper transition-[transform,box-shadow] duration-200 ease-out-soft hover:z-(--z-raised) hover:-translate-y-1 hover:shadow-lift focus-visible:z-(--z-raised) focus-visible:-translate-y-1 focus-visible:shadow-lift"
+            class="relative block aspect-square w-full cursor-zoom-in rounded-xs bg-paper transition-[transform,box-shadow] duration-200 ease-out-soft hover:z-(--z-raised) hover:-translate-y-1 hover:shadow-lift focus-visible:z-(--z-raised) focus-visible:-translate-y-1 focus-visible:shadow-lift active:scale-[0.98] active:translate-y-0"
             :aria-label="`Foto vergrößern: ${item.alt}`"
             @click="openAt(index)"
           >

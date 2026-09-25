@@ -56,18 +56,32 @@ function select(id: string | null): void {
 
     <section v-if="visibleProminent.length" class="mt-12" aria-labelledby="prominente-heading">
       <h2 id="prominente-heading" class="text-h3 text-ink">Bekannte Namen</h2>
-      <ul class="mt-6 grid border-t border-line md:grid-cols-2 md:gap-x-8">
+      <TransitionGroup
+        tag="ul"
+        class="mt-6 grid border-t border-line md:grid-cols-2 md:gap-x-8"
+        enter-active-class="transition-[opacity,transform] duration-200 ease-out-soft"
+        enter-from-class="opacity-0 translate-y-1.5"
+        leave-active-class="transition-[opacity,transform] duration-150 ease-in-soft"
+        leave-to-class="opacity-0 translate-y-1.5"
+      >
         <li v-for="person in visibleProminent" :key="person.name" class="border-b border-line py-6">
           <p class="font-serif text-h3 text-ink">{{ person.name }}</p>
           <p v-if="person.role" class="mt-1 text-body text-ink-muted">{{ person.role }}</p>
           <p class="mt-2 text-meta text-ink">{{ person.object }}</p>
         </li>
-      </ul>
+      </TransitionGroup>
     </section>
 
     <section v-if="visibleOthers.length" class="mt-12 md:mt-16" aria-labelledby="weitere-heading">
       <h2 id="weitere-heading" class="text-h3 text-ink">Weitere Käuferinnen und Käufer</h2>
-      <ul class="mt-6 grid border-t border-line md:grid-cols-2 md:gap-x-8 lg:grid-cols-3">
+      <TransitionGroup
+        tag="ul"
+        class="mt-6 grid border-t border-line md:grid-cols-2 md:gap-x-8 lg:grid-cols-3"
+        enter-active-class="transition-[opacity,transform] duration-200 ease-out-soft"
+        enter-from-class="opacity-0 translate-y-1.5"
+        leave-active-class="transition-[opacity,transform] duration-150 ease-in-soft"
+        leave-to-class="opacity-0 translate-y-1.5"
+      >
         <li v-for="person in visibleOthers" :key="person.name" class="border-b border-line py-5">
           <p class="text-h4 text-ink">{{ person.name }}</p>
           <p class="mt-1 text-meta text-ink-muted">
@@ -75,7 +89,7 @@ function select(id: string | null): void {
             {{ person.object }}
           </p>
         </li>
-      </ul>
+      </TransitionGroup>
     </section>
   </div>
 </template>

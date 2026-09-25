@@ -149,10 +149,10 @@
   scrollbar-color: var(--color-line-strong) transparent;
 }
 
-/* Buttons: Farben 150ms, Transform 200ms (DESIGN_RULES §8 Button) */
+/* Buttons: Farben 150ms, Transform 160ms (tactile press feedback) */
 @utility transition-button {
   transition-property: color, background-color, border-color, text-decoration-color, transform;
-  transition-duration: var(--dur-fast), var(--dur-fast), var(--dur-fast), var(--dur-fast), var(--dur-base);
+  transition-duration: var(--dur-fast), var(--dur-fast), var(--dur-fast), var(--dur-fast), 160ms;
   transition-timing-function: var(--ease-out-soft);
 }
 
@@ -210,7 +210,9 @@
 
 /* Lightbox (natives <dialog>) */
 .lightbox::backdrop {
-  background: rgb(20 18 16 / 0.92);
+  background: rgb(20 18 16 / 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .lightbox[open]::backdrop {
   animation: backdrop-in var(--dur-slow) var(--ease-out-soft);

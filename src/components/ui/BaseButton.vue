@@ -48,7 +48,7 @@ const tagAttrs = computed(() => {
 })
 
 const classes = computed(() => [
-  'group inline-flex items-center justify-center gap-2.5 text-ui transition-button active:translate-y-px',
+  'group inline-flex items-center justify-center gap-2.5 text-ui transition-button active:scale-[0.98] active:translate-y-px',
   buttonVariantClasses[props.variant],
   isGhost.value ? 'min-h-11 px-3 text-left' : ['rounded-md', buttonSizeClasses[props.size]],
   props.fullWidth && 'w-full',
