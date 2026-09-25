@@ -4,6 +4,7 @@ import { RouterLink } from 'vue-router'
 import { ExternalLink, FileText, Mail, Phone } from 'lucide-vue-next'
 import BrandIcon from '@/components/ui/BrandIcon.vue'
 import ResponsiveImage from '@/components/ui/ResponsiveImage.vue'
+import DemoBadge from './DemoBadge.vue'
 import { useStickyBarHideZone } from '@/composables/useStickyBar'
 import { contact, whatsappHref } from '@/data/contact'
 
@@ -72,7 +73,7 @@ const iconProps = { size: 20, 'stroke-width': 1.75, 'aria-hidden': 'true' } as c
 
         <!-- Rechtliches -->
         <nav aria-label="Rechtliches und Service" class="lg:col-span-4">
-          <h2 class="font-sans text-h4 text-paper">Rechtliches</h2>
+          <h2 class="font-sans text-h4 text-paper">Rechtliches &amp; Status</h2>
           <ul class="mt-3">
             <li>
               <a :href="contact.impressumHref" :class="linkClass" target="_blank" rel="noopener noreferrer">
@@ -93,13 +94,19 @@ const iconProps = { size: 20, 'stroke-width': 1.75, 'aria-hidden': 'true' } as c
             <li>
               <RouterLink :to="{ name: 'referenzen' }" :class="linkClass">Referenzen</RouterLink>
             </li>
+            <li class="pt-2">
+              <DemoBadge variant="footer" />
+            </li>
           </ul>
         </nav>
       </div>
 
-      <p class="mt-12 border-t border-paper/12 pt-6 text-meta text-night-muted">
-        © {{ year }} {{ contact.person }}, {{ contact.city }}
-      </p>
+      <div class="mt-12 flex flex-col justify-between gap-4 border-t border-paper/12 pt-6 text-meta text-night-muted md:flex-row md:items-center">
+        <p>© {{ year }} {{ contact.person }}, {{ contact.city }}</p>
+        <p class="max-w-xl text-[0.8125rem] text-night-muted/80">
+          Unverbindlicher Konzept-Entwurf zur Demonstration. Reale Anfragen werden direkt an das Kanzlei-Büro vermittelt.
+        </p>
+      </div>
     </div>
   </footer>
 </template>

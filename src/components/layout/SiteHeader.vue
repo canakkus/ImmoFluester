@@ -5,6 +5,7 @@ import { Menu, Phone, X } from 'lucide-vue-next'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import ResponsiveImage from '@/components/ui/ResponsiveImage.vue'
 import NavLink from './NavLink.vue'
+import DemoBadge from './DemoBadge.vue'
 import { contact } from '@/data/contact'
 import { mainNav } from '@/data/navigation'
 
@@ -103,8 +104,8 @@ onBeforeUnmount(() => {
       </RouterLink>
 
       <!-- Desktop -->
-      <nav aria-label="Hauptnavigation" class="hidden items-center gap-8 lg:flex">
-        <ul class="flex items-center gap-7">
+      <nav aria-label="Hauptnavigation" class="hidden items-center gap-7 lg:flex">
+        <ul class="flex items-center gap-6">
           <li v-for="item in mainNav" :key="item.label">
             <NavLink
               v-slot="{ active }"
@@ -117,7 +118,10 @@ onBeforeUnmount(() => {
             </NavLink>
           </li>
         </ul>
-        <BaseButton :href="contact.phoneHref" :icon="Phone">{{ contact.phoneDisplay }}</BaseButton>
+        <div class="flex items-center gap-3.5">
+          <DemoBadge variant="header" />
+          <BaseButton :href="contact.phoneHref" :icon="Phone">{{ contact.phoneDisplay }}</BaseButton>
+        </div>
       </nav>
 
       <!-- Mobil -->
@@ -157,7 +161,7 @@ onBeforeUnmount(() => {
       ref="sheet"
       class="fixed inset-x-0 top-(--header-h) z-(--z-menu) bg-paper shadow-card lg:hidden"
     >
-      <nav aria-label="Hauptnavigation mobil" class="container-page pb-4">
+      <nav aria-label="Hauptnavigation mobil" class="container-page pb-5">
         <ul class="border-t border-line">
           <li v-for="item in mainNav" :key="item.label" class="border-b border-line">
             <NavLink
@@ -170,6 +174,10 @@ onBeforeUnmount(() => {
             </NavLink>
           </li>
         </ul>
+        <div class="mt-4 flex items-center justify-between border-t border-line pt-4">
+          <span class="text-meta text-ink-muted">Präsentations-Status:</span>
+          <DemoBadge variant="header" />
+        </div>
       </nav>
     </div>
   </Transition>

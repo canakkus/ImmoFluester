@@ -4,8 +4,12 @@ import { RouterView, useRoute } from 'vue-router'
 import SiteFooter from '@/components/layout/SiteFooter.vue'
 import SiteHeader from '@/components/layout/SiteHeader.vue'
 import StickyContactBar from '@/components/layout/StickyContactBar.vue'
+import DemoBadge from '@/components/layout/DemoBadge.vue'
+import DemoModal from '@/components/ui/DemoModal.vue'
+import { useDemoModal } from '@/composables/useDemoModal'
 
 const route = useRoute()
+const { isDemoModalOpen } = useDemoModal()
 
 /**
  * Nach einem echten Seitenwechsel (nicht bei Anker-Sprüngen) den Fokus auf die H1 setzen,
@@ -33,4 +37,6 @@ watch(
   </main>
   <SiteFooter />
   <StickyContactBar />
+  <DemoBadge variant="floating" />
+  <DemoModal v-model:open="isDemoModalOpen" />
 </template>
