@@ -4,7 +4,8 @@ import { prefersReducedMotion } from '@/composables/useReducedMotion'
 export function headerScrollOffset(): number {
   const value = getComputedStyle(document.documentElement).scrollPaddingTop
   const parsed = Number.parseFloat(value)
-  return Number.isFinite(parsed) ? parsed : 0
+  if (Number.isFinite(parsed) && parsed > 0) return parsed
+  return typeof window !== 'undefined' && window.innerWidth >= 1024 ? 104 : 88
 }
 
 export function scrollBehaviorMode(): ScrollBehavior {
