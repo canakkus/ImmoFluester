@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---------- Farben: nur unsere Palette, Tailwind-Defaults aus ---------- */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-white: #ffffff;
+
+  --color-paper: #faf7f2;
+  --color-sand: #f2ece2;
+  --color-ink: #1c1a17;
+  --color-ink-muted: #5a544c;
+  --color-line: #e3dacb;
+  --color-line-strong: #8a8174;
+
+  --color-burgundy: #8a2a22;
+  --color-burgundy-dark: #6e1f19;
+  --color-burgundy-tint: #f6e9e6;
+
+  --color-tanne: #2e5a3c;
+
+  --color-wa: #1f7a4d;
+  --color-wa-dark: #17633e;
+
+  --color-night: #1d2620;
+  --color-night-muted: #b9b2a6;
+  --color-brick-light: #e39a8c;
+
+  /* ---------- Fonts ---------- */
+  --font-serif: "Newsreader Variable", "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "Source Sans 3 Variable", "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* ---------- Typo-Skala ---------- */
+  --text-display: clamp(2.5rem, 1.6rem + 3.8vw, 4.5rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 600;
+
+  --text-h2: clamp(2rem, 1.45rem + 2.3vw, 3rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.015em;
+  --text-h2--font-weight: 600;
+
+  --text-h3: clamp(1.375rem, 1.2rem + 0.75vw, 1.75rem);
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 600;
+
+  --text-h4: 1.125rem;
+  --text-h4--line-height: 1.35;
+  --text-h4--font-weight: 700;
+
+  --text-quote: clamp(1.5rem, 1.2rem + 1.3vw, 2.25rem);
+  --text-quote--line-height: 1.3;
+  --text-quote--letter-spacing: -0.01em;
+  --text-quote--font-weight: 400;
+
+  --text-stat: clamp(2.25rem, 1.9rem + 1.5vw, 3rem);
+  --text-stat--line-height: 1;
+  --text-stat--letter-spacing: -0.02em;
+  --text-stat--font-weight: 600;
+
+  --text-lead: clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem);
+  --text-lead--line-height: 1.55;
+
+  --text-body: clamp(1.0625rem, 1rem + 0.25vw, 1.125rem);
+  --text-body--line-height: 1.65;
+
+  --text-ui: 1.0625rem;
+  --text-ui--line-height: 1.2;
+  --text-ui--letter-spacing: 0.005em;
+  --text-ui--font-weight: 600;
+
+  --text-eyebrow: 0.875rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.14em;
+  --text-eyebrow--font-weight: 700;
+
+  --text-meta: 0.9375rem;
+  --text-meta--line-height: 1.45;
+  --text-meta--font-weight: 500;
+
+  /* ---------- Layout ---------- */
+  --container-page: 75rem;          /* max-w-page = 1200px – die EINZIGE Seitenbreite */
+  --container-prose-body: 65ch;     /* max-w-prose-body */
+  --container-lead: 58ch;           /* max-w-lead */
+
+  /* ---------- Radius ---------- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* ---------- Schatten ---------- */
+  --shadow-card: 0 1px 2px rgb(28 26 23 / 0.05), 0 8px 24px -12px rgb(28 26 23 / 0.12);
+  --shadow-lift: 0 12px 28px -14px rgb(28 26 23 / 0.35);
+  --shadow-bar: 0 -6px 24px -8px rgb(28 26 23 / 0.18);
+  --shadow-header: 0 1px 0 #e3dacb;
+
+  /* ---------- Motion ---------- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-soft: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* Variablen ohne Utility-Namespace: immer ausgeben */
+:root {
+  --z-base: 0;
+  --z-raised: 10;
+  --z-header: 40;
+  --z-stickybar: 50;
+  --z-menu: 60;
+  --z-lightbox: 100;
+  --z-skiplink: 110;
+
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+  --dur-slow: 300ms;
+
+  --section-y: clamp(4rem, 3rem + 4vw, 7.5rem);
+  --header-h: 64px;
+  --stickybar-h: 76px;
+}
+@media (min-width: 64rem) {
+  :root { --header-h: 80px; }
+}
+
+@utility py-section {
+  padding-block: var(--section-y);
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: var(--container-page);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (min-width: 48rem) { padding-inline: 2rem; }
+  @media (min-width: 64rem) { padding-inline: 2.5rem; }
+}
+
+/* Zahlen in Trust-Zeile, Zählern, Schritt-Nummern */
+@utility numeric {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Horizontale Snap-Galerie (mobil) */
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+
+/* Buttons: Farben 150ms, Transform 200ms (DESIGN_RULES §8 Button) */
+@utility transition-button {
+  transition-property: color, background-color, border-color, text-decoration-color, transform;
+  transition-duration: var(--dur-fast), var(--dur-fast), var(--dur-fast), var(--dur-fast), var(--dur-base);
+  transition-timing-function: var(--ease-out-soft);
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+    scroll-padding-top: calc(var(--header-h) + 1.5rem);
+  }
+  body {
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    min-height: 100dvh;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-serif);
+    text-wrap: balance;
+    hyphens: manual;
+  }
+  p, li {
+    text-wrap: pretty;
+    hyphens: auto;
+  }
+
+  a, button, [role="button"], summary, label[for] { cursor: pointer; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-burgundy);
+    outline-offset: 3px;
+  }
+  .on-night :focus-visible,
+  dialog :focus-visible {
+    outline-color: var(--color-paper);
+  }
+
+  ::selection {
+    background: var(--color-burgundy);
+    color: var(--color-white);
+  }
+
+  img { max-width: 100%; height: auto; }
+}
+
+/* Sticky-Kontaktleiste: Platz am Seitenende freihalten (nur < lg, nur solange sichtbar) */
+@media (max-width: 63.999rem) {
+  body.has-stickybar {
+    padding-bottom: calc(var(--stickybar-h) + env(safe-area-inset-bottom));
+  }
+}
+
+/* Lightbox (natives <dialog>) */
+.lightbox::backdrop {
+  background: rgb(20 18 16 / 0.92);
+}
+.lightbox[open]::backdrop {
+  animation: backdrop-in var(--dur-slow) var(--ease-out-soft);
+}
+@keyframes backdrop-in {
+  from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
